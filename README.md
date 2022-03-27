@@ -60,18 +60,29 @@ Relación N - 1 (N Work Entry - 1 User)
 LLamadas disponibles:
 
 User:
+
 POST create user
+
 PUT update user
+
 DELETE user by id
+
 GET user by id
+
 GET all users
 
 WorkEntry:
+
 POST create workEntry
+
 PUT update workEntry
+
 DELETE workEntry by id
+
 GET workEntry by id
+
 GET workEntry by userId
+
 
 Se pueden consultar todas las rutas desde api.yaml
 
