@@ -48,7 +48,7 @@ class WorkEntry
      *
      * @ORM\ManyToOne(targetEntity="User", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id", onDelete="CASCADE")
+     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
      * })
      */
     private $users;
