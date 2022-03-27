@@ -1,2 +1,7 @@
-# APIWorkEntries
-API Rest to registry Work Entries.
+# API Rest Work Entries 
+
+## Creación de entidades
+
+
+
+

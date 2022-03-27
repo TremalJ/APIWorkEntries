@@ -1,0 +1,86 @@
+version: '3.7'
+networks:
+    loki:
+services:
+    postgres:
+        container_name: 'sesame_postgresql'
+        image: postgres:latest
+        environment:
+            POSTGRES_DB: sesame
+            POSTGRES_USER: sesame
+            POSTGRES_PASSWORD: sesame
+        restart: unless-stopped
+        ports:
+            - '5432:5432'
+        volumes:
+            - database_data:/var/lib/postgresql/data
+            - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    php:
+        container_name: 'sesame_php'
+        build:
+            context: .
+            dockerfile: ./docker/php-fpm/Dockerfile
+        restart: unless-stopped
+        ports:
+            - '9002:9000'
+        volumes:
+            - ./:/var/www/symfony
+            - ./var/www/symfony/vendor
+        links:
+            - postgres
+        working_dir: /var/www/symfony
+    nginx:
+        container_name: 'sesame_nginx'
+        build: docker/nginx
+        restart: unless-stopped
+        ports:
+            - '8080:80'
+        links:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx:cached
+    prometheus:
+        image: prom/prometheus
+        ports:
+            - 9090:9090
+        volumes:
+            - ./etc/prometheus:/etc/prometheus
+        command:
+            - '--config.file=/etc/prometheus/prometheus.yml'
+        networks:
+            - loki
+    loki:
+        image: grafana/loki:1.4.1
+        ports:
+            - "3100:3100"
+        volumes:
+            - "./etc/loki/:/etc/loki/"
+        command: '--config.file=/etc/loki/loki-config.yml'
+        networks:
+            - loki
+    promtail:
+        image: grafana/promtail:2.4.0
+        volumes:
+            - /var/log:/var/log
+            - './etc/promtail/:/etc/promtail/'
+        restart: unless-stopped
+        command: '--config.file=/etc/promtail/promtail-config.yml'
+        networks:
+            - loki
+    grafana:
+        image: grafana/grafana
+        user: "1001"
+        ports:
+            - 3000:3000
+        volumes:
+            - "grafana-storage:/var/lib/grafana"
+            - "./etc/grafana/provisioning/:/etc/grafana/provisioning/"
+        environment:
+            - GF_SECURITY_ADMIN_PASSWORD=sesame
+            - GF_USERS_ALLOW_SIGN_UP=false
+        networks:
+            - loki
+volumes:
+    database_data:
+        driver: local
+    grafana-storage:

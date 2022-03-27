@@ -1,0 +1,16 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkFunctionNameCase: true
+    checkMissingIterableValueType: false
+    ignoreErrors:
+            - '# Call to an undefined method App\\Domain\\Repository\\UsersRepositoryInterface|PHPUnit\\Framework\\MockObject\\MockObject:#'
+            - '#Cannot call method getManager#'

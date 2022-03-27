@@ -1,0 +1,23 @@
+nelmio_api_doc:
+    documentation:
+        servers:
+            - url: http://localhost:8080
+              description: API over HTTP
+            - url: https://localhost:8080
+              description: API over HTTPS
+        info:
+            title: Cindes
+            description: The investors webApp!
+            version: 1.0.0
+#        components:
+#            securitySchemes:
+#                Bearer:
+#                    type: http
+#                    scheme: bearer
+#                    bearerFormat: JWT
+        security:
+            - Bearer: []
+    areas:
+        default:
+            path_patterns: # an array of regexps
+                - ^/api

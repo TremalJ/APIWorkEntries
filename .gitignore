@@ -1,0 +1,36 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/uploads/
+/var/
+/vendor/
+/docker/logs/nginx/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+/.phpunit
+/reports
+###< symfony/phpunit-bridge ###
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+### PhpStorm Files ###
+/.idea/
+!/bin/console
+!/bin/phpunit
+!/bin/.phpunit/
+!/.env.local
+/bin/.phpunit/*
+!/logs/
+logs/nginx/symfony_access.log
+/migrations/

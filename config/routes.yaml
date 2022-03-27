@@ -1,0 +1,15 @@
+app.swagger_ui:
+  path: /sesame/doc
+  methods: GET
+  defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+app.swagger:
+  path: /sesame/doc.json
+  methods: GET
+  defaults: { _controller: nelmio_api_doc.controller.swagger }
+
+ms_api:
+  resource: 'routes/api.yaml'
+  prefix: /api/v1
+  defaults:
+    _format: json

@@ -1,0 +1,52 @@
+# Users
+list_user:
+  path: /user
+  methods: [GET]
+  controller: App\Application\Action\User\ListUser
+
+list_user_details:
+  path: /user/{id}
+  methods: [GET]
+  controller: App\Application\Action\User\ListUser
+
+create_user:
+  path: /user
+  methods: [POST]
+  controller: App\Application\Action\User\CreateUser
+
+edit_user:
+  path: /user/{id}
+  methods: [PUT]
+  controller: App\Application\Action\User\EditUser
+
+delete_user:
+  path: /user/{id}
+  methods: [DELETE]
+  controller: App\Application\Action\User\DeleteUser
+
+
+# Work Entry
+work_entry_user_id:
+  path: /workEntry/user/{user_id}
+  methods: [GET]
+  controller: App\Application\Action\WorkEntry\ListWorkEntryByUser
+  
+work_entry_id:
+  path: /workEntry/{id}
+  methods: [GET]
+  controller: App\Application\Action\WorkEntry\ListWorkEntry
+  
+create_work_entry:
+  path: /workEntry
+  methods: [POST]
+  controller: App\Application\Action\WorkEntry\CreateWorkEntry
+  
+update_work_entry:
+  path: /workEntry/{id}
+  methods: [ PUT ]
+  controller: App\Application\Action\WorkEntry\EditWorkEntry
+
+delete_work_entry:
+  path: /workEntry/{id}
+  methods: [DELETE]
+  controller: App\Application\Action\WorkEntry\DeleteWorkEntry
